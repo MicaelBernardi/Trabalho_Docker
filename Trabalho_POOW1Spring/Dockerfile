@@ -19,6 +19,7 @@ RUN git clone https://github.com/MicaelBernardi/Trabalho_Docker.git . \
     && echo "CONTEÚDO DO POM.XML:" \
     && find . -name pom.xml -exec ls -la {} \;
 RUN ls -la /app
+RUN echo "Pausando por 10 segundos..." && sleep 10
 
 # Instalar dependências e construir o projeto
 RUN mvn clean package -DskipTests
