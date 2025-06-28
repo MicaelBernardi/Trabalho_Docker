@@ -13,8 +13,11 @@ RUN apk add --no-cache \
 WORKDIR /app
 
 # Clonar o repositório (substitua pela URL real)
-RUN git clone https://github.com/MicaelBernardi/Trabalho_Docker.git .
-RUN ls -la /app > /tmp/conteudo_app.txt && cat /tmp/conteudo_app.txt
+RUN git clone https://github.com/MicaelBernardi/Trabalho_Docker.git . \
+    && echo "ESTRUTURA COMPLETA:" \
+    && tree -L 3 \
+    && echo "CONTEÚDO DO POM.XML:" \
+    && find . -name pom.xml -exec ls -la {} \;
 RUN mvn -v 
 # Instalar dependências e construir o projeto
 RUN mvn clean package -DskipTests -X
