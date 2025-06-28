@@ -11,11 +11,11 @@ RUN apk add --no-cache \
 
 WORKDIR /app
 # Definir diretório de trabalho
-WORKDIR /app/Trabalho_POOW1Spring
+
 
 # Clonar o repositório (substitua pela URL real)
-RUN git clone https://github.com/MicaelBernardi/Trabalho_Docker.git /
-
+RUN git clone https://github.com/MicaelBernardi/Trabalho_Docker.git ./
+WORKDIR /app/Trabalho_POOW1Spring
 # Instalar dependências e construir o projeto
 RUN mvn clean package -DskipTests
 
