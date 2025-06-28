@@ -21,6 +21,6 @@ RUN mvn clean package -DskipTests
 
 # Configurar volume para logs
 VOLUME ["/var/log/app"]
-RUN mkdir -p /var/log/app && chown spring:spring /var/log/app
+RUN mkdir -p /var/log/app
 
 ENTRYPOINT ["java", "-jar", "target/Trabalho_POOW1Spring-0.0.1-SNAPSHOT.jar"]
