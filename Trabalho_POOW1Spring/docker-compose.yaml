@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  spring-app:
+    build: .
+    container_name: spring-mvc-app
+    ports:
+      - "8080:8080"
+    volumes:
+      - app-logs:/var/log/app
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/seubanco
+      - SPRING_DATASOURCE_USERNAME=usuario
+      - SPRING_DATASOURCE_PASSWORD=senha
+      - SPRING_PROFILES_ACTIVE=prod
+    restart: unless-stopped
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: seubanco
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: senha
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  app-logs:
+  pgdata:
