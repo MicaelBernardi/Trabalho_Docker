@@ -9,6 +9,7 @@ RUN apk add --no-cache \
     bash \
     tini
 
+WORKDIR /app
 # Definir diretório de trabalho
 WORKDIR /app/Trabalho_POOW1Spring
 
