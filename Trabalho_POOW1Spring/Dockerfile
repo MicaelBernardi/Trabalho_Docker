@@ -19,9 +19,9 @@ RUN git clone https://github.com/MicaelBernardi/Trabalho_Docker.git . \
     && echo "CONTEÚDO DO POM.XML:" \
     && find . -name pom.xml -exec ls -la {} \;
 RUN ls -la /app
-RUN mvn -v 
+
 # Instalar dependências e construir o projeto
-RUN mvn clean package -DskipTests -X
+RUN mvn clean package -DskipTests
 
 # Configurar volume para logs
 VOLUME ["/var/log/app"]
