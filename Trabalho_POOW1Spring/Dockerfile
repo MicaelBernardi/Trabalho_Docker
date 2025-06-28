@@ -14,7 +14,7 @@ WORKDIR /app
 
 # Clonar o repositório (substitua pela URL real)
 RUN git clone https://github.com/MicaelBernardi/Trabalho_Docker.git .
-RUN ls -la /app
+RUN ls -la /app > /tmp/conteudo_app.txt && cat /tmp/conteudo_app.txt
 RUN mvn -v 
 # Instalar dependências e construir o projeto
 RUN mvn clean package -DskipTests -X
