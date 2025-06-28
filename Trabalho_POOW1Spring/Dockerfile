@@ -10,16 +10,10 @@ RUN apk add --no-cache \
     tini
 
 # Definir diretório de trabalho
-WORKDIR /app
+WORKDIR /app/Trabalho_POOW1Spring
 
 # Clonar o repositório (substitua pela URL real)
-RUN git clone https://github.com/MicaelBernardi/Trabalho_Docker.git . \
-    && echo "ESTRUTURA COMPLETA:" \
-    && tree -L 3 \
-    && echo "CONTEÚDO DO POM.XML:" \
-    && find . -name pom.xml -exec ls -la {} \;
-RUN ls -la /app
-RUN echo "Pausando por 10 segundos..." && sleep 10
+RUN git clone https://github.com/MicaelBernardi/Trabalho_Docker.git .
 
 # Instalar dependências e construir o projeto
 RUN mvn clean package -DskipTests
