@@ -7,6 +7,7 @@ RUN apk add --no-cache \
     bash \
     tini \
     postgresql-client \
+    sudo \
     postgresql
 
 WORKDIR /app
