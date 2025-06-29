@@ -14,6 +14,9 @@ public static Connection conectarBancoPostgres() throws ClassNotFoundException, 
     String user = System.getenv("SPRING_DATASOURCE_USERNAME");
     String senha = System.getenv("SPRING_DATASOURCE_PASSWORD");
 
+    System.out.println("URL: " + url);
+    System.out.println("User: " + user);
+
     if (url == null) {
         url = "jdbc:postgresql://localhost:5432/trabalhopoow1";  // fallback para desenvolvimento local
     }
