@@ -11,7 +11,7 @@ public class ConectarBanco {
 
         Class.forName("org.postgresql.Driver");
         System.out.println("Driver carregado");
-        String url = "jdbc:postgresql://localhost:5432/trabalhopoow1";
+        String url = "jdbc:postgresql://db:5432/trabalhopoow1";
         String user = "postgres";
         String senha = "1234";
         Connection conn = DriverManager.getConnection(url, user, senha);
