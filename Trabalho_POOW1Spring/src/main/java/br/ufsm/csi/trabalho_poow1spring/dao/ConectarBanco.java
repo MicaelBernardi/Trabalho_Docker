@@ -6,17 +6,27 @@ import java.sql.SQLException;
 
 public class ConectarBanco {
 
-    public static Connection conectarBancoPostgres()
-            throws ClassNotFoundException, SQLException {
+public static Connection conectarBancoPostgres() throws ClassNotFoundException, SQLException {
+    Class.forName("org.postgresql.Driver");
+    System.out.println("Driver carregado");
 
-        Class.forName("org.postgresql.Driver");
-        System.out.println("Driver carregado");
-        String url = "jdbc:postgresql://db:5432/trabalhopoow1";
-        String user = "postgres";
-        String senha = "1234";
-        Connection conn = DriverManager.getConnection(url, user, senha);
-        return conn;
+    String url = System.getenv("SPRING_DATASOURCE_URL");
+    String user = System.getenv("SPRING_DATASOURCE_USERNAME");
+    String senha = System.getenv("SPRING_DATASOURCE_PASSWORD");
+
+    if (url == null) {
+        url = "jdbc:postgresql://localhost:5432/trabalhopoow1";  // fallback para desenvolvimento local
     }
+    if (user == null) {
+        user = "postgres";
+    }
+    if (senha == null) {
+        senha = "1234";
+    }
+
+    Connection conn = DriverManager.getConnection(url, user, senha);
+    return conn;
+}
 
     public Connection conectarBancoPostgresMySql(){
         return null;
