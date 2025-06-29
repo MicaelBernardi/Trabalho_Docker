@@ -6,9 +6,7 @@ RUN apk add --no-cache \
     maven \
     bash \
     tini \
-    postgresql-client \
-    sudo \
-    postgresql
+    postgresql-client
 
 WORKDIR /app
 
