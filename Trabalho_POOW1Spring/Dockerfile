@@ -1,24 +1,23 @@
 FROM eclipse-temurin:21-jdk-alpine
 
-# 1. Instala tudo (PostgreSQL + dependências)
+# Install PostgreSQL and dependencies (without JDBC package)
 RUN apk add --no-cache \
     postgresql \
     postgresql-client \
-    postgresql-jdbc \
     bash \
     tini
 
-# 2. Configura diretórios do PostgreSQL
+# Configure PostgreSQL directories
 RUN mkdir -p /var/lib/postgresql/data && \
     chown postgres:postgres /var/lib/postgresql/data
 
-# 3. Cria e constrói a aplicação
+# Build application
 WORKDIR /app
 RUN git clone https://github.com/MicaelBernardi/Trabalho_Docker.git . && \
     cd Trabalho_POOW1Spring && \
     mvn clean package -DskipTests
 
-# 4. ENTRYPOINT que faz tudo (PostgreSQL + Spring Boot)
+# Combined entrypoint for PostgreSQL and Spring Boot
 ENTRYPOINT ["/sbin/tini", "--", "sh", "-c", " \
   su postgres -c 'initdb -D /var/lib/postgresql/data' && \
   su postgres -c 'pg_ctl -D /var/lib/postgresql/data -l logfile start' && \
@@ -27,5 +26,4 @@ ENTRYPOINT ["/sbin/tini", "--", "sh", "-c", " \
   java -jar target/Trabalho_POOW1Spring-0.0.1-SNAPSHOT.jar \
 "]
 
-# 5. Expõe as portas
 EXPOSE 5432 8080
