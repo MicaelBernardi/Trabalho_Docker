@@ -13,9 +13,9 @@ RUN mkdir -p /var/lib/postgresql/data && \
 
 # Build application
 WORKDIR /app
-RUN git clone https://github.com/MicaelBernardi/Trabalho_Docker.git . && \
-    cd Trabalho_POOW1Spring && \
-    mvn clean package -DskipTests
+RUN git clone https://github.com/MicaelBernardi/Trabalho_Docker.git .
+WORKDIR /app/Trabalho_POOW1Spring
+RUN mvn clean package -DskipTests
 
 # Combined entrypoint for PostgreSQL and Spring Boot
 ENTRYPOINT ["/sbin/tini", "--", "sh", "-c", " \
